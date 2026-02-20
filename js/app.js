@@ -755,19 +755,19 @@ function showResults() {
   scoreSummary.innerHTML = `
     <div class="score-cards">
       <div class="score-card green">
-        <div class="score-icon">=â</div>
+        <div class="score-icon">ðŸŸ¢</div>
         <div class="score-count">${scores.green}</div>
         <div class="score-percentage">${Math.round((scores.green / 20) * 100)}%</div>
         <div class="score-label">Durable Leadership</div>
       </div>
       <div class="score-card yellow">
-        <div class="score-icon">=á</div>
+        <div class="score-icon">ðŸŸ¡</div>
         <div class="score-count">${scores.yellow}</div>
         <div class="score-percentage">${Math.round((scores.yellow / 20) * 100)}%</div>
         <div class="score-label">Context Dependent</div>
       </div>
       <div class="score-card red">
-        <div class="score-icon">=4</div>
+        <div class="score-icon">ðŸ”´</div>
         <div class="score-count">${scores.red}</div>
         <div class="score-percentage">${Math.round((scores.red / 20) * 100)}%</div>
         <div class="score-label">Fragile Leadership</div>
@@ -780,11 +780,11 @@ function showResults() {
   let interpretation = '';
 
   if (scores.green === maxScore) {
-    interpretation = '<p><strong>Mostly =â</strong> means you are building a durable technology organisation. You can delegate without losing ownership, use vendors without outsourcing thinking, and manage up without lying.</p>';
+    interpretation = '<p><strong>Mostly ðŸŸ¢</strong> means you are building a durable technology organisation. You can delegate without losing ownership, use vendors without outsourcing thinking, and manage up without lying.</p>';
   } else if (scores.yellow === maxScore) {
-    interpretation = '<p><strong>Mostly =á</strong> means you have good instincts but pressure pushes you toward convenience. Under stress, your worst defaults will dominate unless you consciously correct them.</p>';
+    interpretation = '<p><strong>Mostly ðŸŸ¡</strong> means you have good instincts but pressure pushes you toward convenience. Under stress, your worst defaults will dominate unless you consciously correct them.</p>';
   } else {
-    interpretation = '<p><strong>Mostly =4</strong> means you optimise for optics, comfort, and personal safety. You are likely an upwards management leader. Your organisation will look calm right until it fails loudly.</p>';
+    interpretation = '<p><strong>Mostly ðŸ”´</strong> means you optimise for optics, comfort, and personal safety. You are likely an upwards management leader. Your organisation will look calm right until it fails loudly.</p>';
   }
 
   interpretation += '<p class="final-statement"><strong>The most dangerous leaders are not incompetent. They are reassuring.</strong></p>';
@@ -813,7 +813,7 @@ function displayDetailedBreakdown() {
     ['A', 'B', 'C', 'D'].forEach(optionKey => {
       const option = question.options[optionKey];
       const isSelected = optionKey === selectedOption;
-      const scoreEmoji = option.score === 'green' ? '=â' : (option.score === 'yellow' ? '=á' : '=4');
+      const scoreEmoji = option.score === 'green' ? 'ðŸŸ¢' : (option.score === 'yellow' ? 'ðŸŸ¡' : 'ðŸ”´');
 
       optionsHTML += `
         <div class="breakdown-option ${isSelected ? 'selected' : ''}">
