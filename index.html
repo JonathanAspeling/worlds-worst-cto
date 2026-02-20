@@ -1,18 +1,18 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+  <title>The CTO Leadership Self-Assessment</title>
   <link rel="stylesheet" href="css/style.css">
-  <meta name="description" content="">
+  <meta name="description" content="A brutally honest assessment of technology leadership under pressure">
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
+  <meta property="og:title" content="The CTO Leadership Self-Assessment">
+  <meta property="og:type" content="website">
   <meta property="og:url" content="">
   <meta property="og:image" content="">
-  <meta property="og:image:alt" content="">
+  <meta property="og:image:alt" content="CTO Leadership Self-Assessment">
 
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
@@ -24,8 +24,98 @@
 
 <body>
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
+  <main id="app">
+    <!-- Landing Page View -->
+    <section id="landing-view" class="view" aria-labelledby="landing-title">
+      <header class="assessment-header">
+        <h1 id="landing-title">The CTO Leadership Self-Assessment</h1>
+        <p class="subtitle">A brutally honest assessment of technology leadership under pressure</p>
+      </header>
+
+      <div class="explainer">
+        <p>This is a self assessment. It is not balanced. It is not gentle. It is not here to validate your operating model, your org chart, or the deck you use to reassure executives. It exists to surface how you actually think about technology leadership when pressure arrives and incentives collide with reality.</p>
+
+        <p>Answer honestly. Not as the leader you describe in interviews. As the leader you become when systems fail, timelines slip, engineers disagree, and someone senior wants a simple answer to a complex problem.</p>
+
+        <p>This is written like a Cosmopolitan quiz for people who run technology at scale. Every option is phrased to sound reasonable, responsible, and professionally defensible. That is the point. The wrong answers are rarely stupid. They are seductive.</p>
+      </div>
+
+      <div class="scoring-guide">
+        <h2>How You Will Be Scored</h2>
+        <ul class="score-indicators">
+          <li>
+            <span class="score-icon green" aria-label="Green">🟢</span>
+            <strong>Durable leadership</strong> – builds long term capability, speed, and resilience
+          </li>
+          <li>
+            <span class="score-icon yellow" aria-label="Yellow">🟡</span>
+            <strong>Context dependent</strong> – reasonable sometimes, dangerous as a default
+          </li>
+          <li>
+            <span class="score-icon red" aria-label="Red">🔴</span>
+            <strong>Fragile leadership</strong> – optimises for optics, control, and personal safety
+          </li>
+        </ul>
+      </div>
+
+      <div class="cta">
+        <button id="start-btn" class="btn-primary">Start Assessment</button>
+      </div>
+
+      <footer class="attribution">
+        <p>Assessment created by <a href="https://andrewbaker.ninja" target="_blank" rel="noopener noreferrer">Andrew Baker</a></p>
+        <p><a href="https://andrewbaker.ninja/2026/02/04/cosmo-self-assessment-are-you-the-worlds-worst-technology-leader/" target="_blank" rel="noopener noreferrer">Read the original article</a></p>
+      </footer>
+    </section>
+
+    <!-- Question View -->
+    <section id="question-view" class="view hidden" aria-labelledby="question-title">
+      <div class="progress-indicator" aria-live="polite">
+        <span id="progress-text">Question <span id="current-question">1</span> of <span id="total-questions">20</span></span>
+      </div>
+
+      <div class="question-container">
+        <h2 id="question-title" class="question-text"></h2>
+
+        <div id="options-container" class="options" role="group" aria-labelledby="question-title">
+          <!-- Options will be dynamically inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Results View -->
+    <section id="results-view" class="view hidden" aria-labelledby="results-title">
+      <header class="assessment-header">
+        <h1 id="results-title">Your Results</h1>
+      </header>
+
+      <div id="score-summary" class="score-summary">
+        <!-- Score summary will be dynamically inserted here -->
+      </div>
+
+      <div id="interpretation" class="interpretation">
+        <!-- Interpretation will be dynamically inserted here -->
+      </div>
+
+      <div class="detailed-breakdown">
+        <h2>Detailed Breakdown</h2>
+        <p class="breakdown-intro">Review all questions with your answers highlighted:</p>
+        <div id="breakdown-container">
+          <!-- Detailed breakdown will be dynamically inserted here -->
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="retake-btn" class="btn-primary">Retake Assessment</button>
+      </div>
+
+      <footer class="attribution">
+        <p>Assessment created by <a href="https://andrewbaker.ninja" target="_blank" rel="noopener noreferrer">Andrew Baker</a></p>
+        <p><a href="https://andrewbaker.ninja/2026/02/04/cosmo-self-assessment-are-you-the-worlds-worst-technology-leader/" target="_blank" rel="noopener noreferrer">Read the original article</a></p>
+      </footer>
+    </section>
+  </main>
+
   <script src="js/app.js"></script>
 
 </body>
