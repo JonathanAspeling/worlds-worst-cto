@@ -808,19 +808,44 @@ function displayDetailedBreakdown() {
 
     const questionDiv = document.createElement('div');
     questionDiv.className = 'breakdown-question';
+    questionDiv.setAttribute('data-question-id', question.number);
 
-    let optionsHTML = '';
+    // Build the selected option HTML
+    const selectedOptionData = question.options[selectedOption];
+    const selectedScoreEmoji = selectedOptionData.score === 'green' ? '🟢' : (selectedOptionData.score === 'yellow' ? '🟡' : '🔴');
+
+    let selectedOptionHTML = `
+      <div class="breakdown-option selected">
+        <div class="breakdown-option-header">
+          <span class="breakdown-option-letter">${selectedOption}</span>
+          <span class="breakdown-score">${selectedScoreEmoji}</span>
+          <span class="your-answer-badge">Your Answer</span>
+        </div>
+        <div class="breakdown-option-text">${selectedOptionData.text}</div>
+        <div class="breakdown-option-details">
+          <div class="breakdown-detail">
+            <strong>Why it is attractive:</strong> ${selectedOptionData.attractive}
+          </div>
+          <div class="breakdown-detail">
+            <strong>What it tends to create:</strong> ${selectedOptionData.creates}
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Build the other options HTML (initially hidden)
+    let otherOptionsHTML = '';
     ['A', 'B', 'C', 'D'].forEach(optionKey => {
+      if (optionKey === selectedOption) return; // Skip the selected option
+
       const option = question.options[optionKey];
-      const isSelected = optionKey === selectedOption;
       const scoreEmoji = option.score === 'green' ? '🟢' : (option.score === 'yellow' ? '🟡' : '🔴');
 
-      optionsHTML += `
-        <div class="breakdown-option ${isSelected ? 'selected' : ''}">
+      otherOptionsHTML += `
+        <div class="breakdown-option">
           <div class="breakdown-option-header">
             <span class="breakdown-option-letter">${optionKey}</span>
             <span class="breakdown-score">${scoreEmoji}</span>
-            ${isSelected ? '<span class="your-answer-badge">Your Answer</span>' : ''}
           </div>
           <div class="breakdown-option-text">${option.text}</div>
           <div class="breakdown-option-details">
@@ -839,10 +864,44 @@ function displayDetailedBreakdown() {
       <h3 class="breakdown-question-title">${question.number}. ${question.question}</h3>
       <p class="breakdown-question-context">${question.context}</p>
       <div class="breakdown-options">
-        ${optionsHTML}
+        ${selectedOptionHTML}
       </div>
+      <div class="breakdown-other-options hidden">
+        ${otherOptionsHTML}
+      </div>
+      <button class="toggle-options-btn" data-question-id="${question.number}">
+        <span class="toggle-text">Show all options</span>
+        <span class="toggle-icon">▼</span>
+      </button>
     `;
 
     container.appendChild(questionDiv);
   });
+
+  // Add event listeners to all toggle buttons
+  const toggleButtons = container.querySelectorAll('.toggle-options-btn');
+  toggleButtons.forEach(button => {
+    button.addEventListener('click', toggleQuestionOptions);
+  });
+}
+
+function toggleQuestionOptions(event) {
+  const button = event.currentTarget;
+  const questionId = button.getAttribute('data-question-id');
+  const questionDiv = document.querySelector(`.breakdown-question[data-question-id="${questionId}"]`);
+  const otherOptions = questionDiv.querySelector('.breakdown-other-options');
+  const toggleText = button.querySelector('.toggle-text');
+  const toggleIcon = button.querySelector('.toggle-icon');
+
+  if (otherOptions.classList.contains('hidden')) {
+    // Expand - show other options
+    otherOptions.classList.remove('hidden');
+    toggleText.textContent = 'Hide other options';
+    toggleIcon.textContent = '▲';
+  } else {
+    // Collapse - hide other options
+    otherOptions.classList.add('hidden');
+    toggleText.textContent = 'Show all options';
+    toggleIcon.textContent = '▼';
+  }
 }
