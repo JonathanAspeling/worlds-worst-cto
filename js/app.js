@@ -683,6 +683,13 @@ function showView(viewName) {
 function displayQuestion(index) {
   const question = assessmentData[index];
 
+  // Scroll to top of page IMMEDIATELY to ensure question is visible
+  // Use instant scrolling (not smooth) so user sees question right away
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  // Also scroll the document element for better mobile compatibility
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+
   // Update progress
   document.getElementById('current-question').textContent = question.number;
   document.getElementById('total-questions').textContent = assessmentData.length;
@@ -737,6 +744,11 @@ function selectOption(optionKey) {
 }
 
 function showResults() {
+  // Scroll to top when showing results
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+
   // Calculate scores
   const scores = {
     green: 0,
